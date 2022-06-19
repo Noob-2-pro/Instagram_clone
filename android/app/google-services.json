@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "102722170830",
+    "project_id": "instagram-clone-ritikx",
+    "storage_bucket": "instagram-clone-ritikx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102722170830:android:43cbb2b29ebf595101059f",
+        "android_client_info": {
+          "package_name": "com.example.instagram_clone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102722170830-i45eo6slkeu07vjglp8dll7m56nbfsr9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXIcQcMS4yzxRsM67ikOTI-dJZZjcL6KM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102722170830-i45eo6slkeu07vjglp8dll7m56nbfsr9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "102722170830-uu1ndaei34p7kfp0642uvol73lljsog4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.instagramClone"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

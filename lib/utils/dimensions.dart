@@ -1,0 +1,1 @@
+const kwebScreenSize = 600;
