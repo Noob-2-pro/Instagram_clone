@@ -6,6 +6,14 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Instagram Clone</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>to access gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>to acess camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>to access microphone</string>
+
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

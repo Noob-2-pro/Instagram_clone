@@ -1,12 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:instagram_clone/resources/auth.methods.dart';
 import 'package:instagram_clone/widgets/textfield.dart';
 
 import '../navigation.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -15,7 +16,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   bool isObscure = true;
+  bool isError = false;
+  String errorText = "";
 
   @override
   void dispose() {
@@ -28,8 +32,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-          
+          child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -43,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 60,
                     color: Colors.white,
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   CustomTextFeild(
                       hintText: "Email",
                       keyboardType: TextInputType.emailAddress,
@@ -60,31 +64,50 @@ class _LoginScreenState extends State<LoginScreen> {
                             setState(() {});
                           },
                           child: isObscure
-                              ? Icon(
+                              ? const Icon(
                                   Icons.visibility_off_outlined,
                                   color: Colors.white,
                                 )
-                              : Icon(
+                              : const Icon(
                                   Icons.visibility,
                                   color: Colors.white,
                                 )),
                       isObscure: isObscure,
                     ),
                   ),
-
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await AuthMethods()
+                            .loginUser(email: _emailController.text, password: _passwordController.text)
+                            .then((value) {
+                          if (value == true) {
+                            isError = false;
+                            setState(() {});
+                          }
+                        }).onError((error, stackTrace) {
+                          errorText = error.toString();
+                          isError = true;
+                          setState(() {});
+                        });
+                      }
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith((states) => Colors.blue),
-                      fixedSize: MaterialStateProperty.resolveWith((states) => Size.fromWidth(double.infinity)),
+                      fixedSize: MaterialStateProperty.resolveWith((states) => const Size.fromWidth(double.infinity)),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: const Text(
+                    child: const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
                         "Log In",
                       ),
                     ),
                   ),
+                  if (isError)
+                    Text(
+                      errorText,
+                      style: const TextStyle(color: Colors.red),
+                    ),
 
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),
@@ -95,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   // OR divider
                   Row(
-                    children: [
+                    children: const [
                       Expanded(
                         child: Divider(
                           height: 10,
@@ -103,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Text('OR'),
                       ),
                       Expanded(
@@ -118,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
-                      children: [
+                      children: const [
                         Icon(Icons.facebook_outlined, color: Colors.blue),
                         SizedBox(width: 5),
                         Text(
@@ -131,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            Divider(),
+            const Divider(),
             plain_then_link_text(
               plaintext: "Don't have an account? ",
               linkText: 'Sign up',
@@ -139,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pushNamed(context, signUpRoute);
               },
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
           ],
         ),
       )),

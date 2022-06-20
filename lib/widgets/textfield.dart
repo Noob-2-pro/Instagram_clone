@@ -37,8 +37,8 @@ class CustomTextFeild extends StatelessWidget {
       obscureText: isObscure ?? false,
       validator: validator ??
           (value) {
-            if (value == null) {
-              return 'vlaue should not be null';
+            if (value!.isEmpty) {
+              return 'value should not be null';
             }
             return null;
           },
