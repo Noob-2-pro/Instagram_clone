@@ -84,6 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value == true) {
                             isError = false;
                             setState(() {});
+                            Navigator.pushReplacementNamed(context, responsiveLayout);
                           }
                         }).onError((error, stackTrace) {
                           errorText = error.toString();
@@ -111,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: plain_then_link_text(
+                    child: plainThenLinkText(
                       plaintext: "Forgot your login details? ",
                       linkText: 'Get help logging in',
                     ),
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const Divider(),
-            plain_then_link_text(
+            plainThenLinkText(
               plaintext: "Don't have an account? ",
               linkText: 'Sign up',
               onTap: () {
@@ -169,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  Text plain_then_link_text({required String plaintext, required String linkText, Function()? onTap}) {
+  Text plainThenLinkText({required String plaintext, required String linkText, Function()? onTap}) {
     return Text.rich(
       TextSpan(text: plaintext, children: [
         TextSpan(

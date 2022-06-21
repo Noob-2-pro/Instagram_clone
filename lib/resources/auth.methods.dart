@@ -19,7 +19,7 @@ class AuthMethods {
 
     try {
       UserCredential cred = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      print(cred.user);
+      // print(cred.user);
 
       if (file != null) {
         downloadUrl = await StorageMethods().uploadImageToStorage('profilePics', false, file);

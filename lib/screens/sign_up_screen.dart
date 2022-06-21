@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,6 +59,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           print('Sign up done');
           isError = false;
           setState(() {});
+          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, responsiveLayout);
         }
       });
       setState(() {

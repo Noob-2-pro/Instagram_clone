@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../navigation.dart';
 
 
 class WebScreenLayout extends StatelessWidget {
@@ -7,7 +10,16 @@ class WebScreenLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+           actions: [
+          InkWell(
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, loginRoute);
+              },
+              child: Icon(Icons.logout)),
+        ],
+      ),
       body: const Center(child: Text("this is web "),),
     );
   }
